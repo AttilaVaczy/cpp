@@ -13,7 +13,7 @@ void FBullCow::Reset()
 	constexpr int32 MAX_TRIES = 8;
 	MyMaxTries = MAX_TRIES;
 
-	const FString HIDDEN_WORD = "Planet";
+	const FString HIDDEN_WORD = "ant";
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
 	return;
@@ -24,14 +24,21 @@ bool FBullCow::CheckGuessValidity(FString)
 	return false;
 }
 
-FBullCowCount FBullCow::SubmitGuess(FString)
+FBullCowCount FBullCow::SubmitGuess(FString Guess)
 {	
 	MyCurrentTry++;
 	FBullCowCount BullCowCount;
 	int32 HiddenWordLength = MyHiddenWord.length();
-	for (int32 i = 0; i < HiddenWordLength; i++) {
-		for (int32 j = 0; j < HiddenWordLength; j++) {
-
+	for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++) {
+		for (int32 GChar = 0; GChar < HiddenWordLength; GChar++) {
+			if (Guess[GChar] == MyHiddenWord[MHWChar]) {
+				if (MHWChar == GChar) {
+					BullCowCount.Bulls++;
+				}
+				else {
+					BullCowCount.Cows++;
+				}
+			}
 		}
 	}
 
