@@ -17,10 +17,12 @@ public:
 	FBullCow(); //constructor
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
+	int32 GetHiddenWorldLength() const;
+
 	bool IsGameWon() const;
+	bool CheckGuessValidity(FString) const;
 
 	void Reset(); //TODO Make a more rich return value
-	bool CheckGuessValidity(FString);
 	FBullCowCount SubmitGuess(FString);
 
 

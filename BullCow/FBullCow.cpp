@@ -6,20 +6,22 @@ FBullCow::FBullCow() { Reset(); }
 
 int32 FBullCow::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCow::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullCow::GetHiddenWorldLength() const { return MyHiddenWord.length(); }
+
 bool FBullCow::IsGameWon() const { return false; }
 
 void FBullCow::Reset()
 {
 	constexpr int32 MAX_TRIES = 8;
-	MyMaxTries = MAX_TRIES;
+	const FString HIDDEN_WORD = "camel";
 
-	const FString HIDDEN_WORD = "ant";
+	MyMaxTries = MAX_TRIES;
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
 	return;
 }
 
-bool FBullCow::CheckGuessValidity(FString)
+bool FBullCow::CheckGuessValidity(FString) const
 {
 	return false;
 }
