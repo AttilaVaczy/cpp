@@ -27,16 +27,16 @@ public:
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWorldLength() const;
-
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidity(FString) const;
 
 	void Reset(); //TODO Make a more rich return value
-	FBullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitValidGuess(FString);
 
 
 private:
 	int32 MyCurrentTry;
 	int32 MyMaxTries;
 	FString MyHiddenWord;
+	bool bGameIsWon;
 };

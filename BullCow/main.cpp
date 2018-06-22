@@ -30,16 +30,13 @@ void PlayGame()
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 
-	for (int32 count = 1; count <= MaxTries; count++) {
-		if (count) {
-			FText Guess = GetValidGuess();
+	while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
+		FText Guess = GetValidGuess();
 
-			FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
-			std::cout << "Bulls = " << BullCowCount.Bulls;
-			std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
-		}
+		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
+		std::cout << "Bulls = " << BullCowCount.Bulls;
+		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
 	}
-	// TODO summarise game here
 }
 
 bool AskToPlayAgain()
@@ -84,7 +81,7 @@ FText GetValidGuess()
 void PrintIntro()
 {
 	// introduce the game
-	std::cout << "Welcome to Cows and Bulls, a fun word game" << std::endl;
+	std::cout << "\n\nWelcome to Cows and Bulls, a fun word game" << std::endl;
 	std::cout << "Can you guess the letter " << BCGame.GetHiddenWorldLength();
 	std::cout << " isogram i'm thinking of\n";
 	std::cout << std::endl;
