@@ -21,9 +21,24 @@ void FBullCow::Reset()
 	return;
 }
 
-bool FBullCow::CheckGuessValidity(FString) const
+EGuessStatus FBullCow::CheckGuessValidity(FString Guess) const
 {
-	return false;
+	if (false)
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false)
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (Guess.length() != GetHiddenWorldLength())
+	{
+		return EGuessStatus::Word_Length;
+	}
+	else
+	{
+		return EGuessStatus::Ok;
+	}
 }
 
 FBullCowCount FBullCow::SubmitGuess(FString Guess)

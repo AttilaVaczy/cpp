@@ -10,6 +10,14 @@ struct FBullCowCount
 	int32 Cows = 0;
 };
 
+enum EGuessStatus
+{
+	Ok,
+	Not_Isogram,
+	Word_Length,
+	Not_Lowercase
+};
+
 class FBullCow {
 
 
@@ -20,7 +28,7 @@ public:
 	int32 GetHiddenWorldLength() const;
 
 	bool IsGameWon() const;
-	bool CheckGuessValidity(FString) const;
+	EGuessStatus CheckGuessValidity(FString) const;
 
 	void Reset(); //TODO Make a more rich return value
 	FBullCowCount SubmitGuess(FString);
