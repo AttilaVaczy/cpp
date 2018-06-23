@@ -8,7 +8,7 @@ FBullCow::FBullCow() { Reset(); }
 
 int32 FBullCow::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCow::GetCurrentTry() const { return MyCurrentTry; }
-int32 FBullCow::GetHiddenWorldLength() const { return MyHiddenWord.length(); }
+int32 FBullCow::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCow::IsGameWon() const { return bGameIsWon; }
 
 void FBullCow::Reset()
@@ -29,11 +29,11 @@ EGuessStatus FBullCow::CheckGuessValidity(FString Guess) const
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false)
+	else if (!IsLowercase(Guess))
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
-	else if (Guess.length() != GetHiddenWorldLength())
+	else if (Guess.length() != GetHiddenWordLength())
 	{
 		return EGuessStatus::Word_Length;
 	}
@@ -85,6 +85,17 @@ bool FBullCow::IsIsogram(FString Word) const
 		}
 		else {
 			LetterSeen[Letter] = true;
+		}
+	}
+	return true;
+}
+
+bool FBullCow::IsLowercase(FString Word) const
+{
+	for (auto Letter : Word)
+	{
+		if (!islower(Letter)) {
+			return false;
 		}
 	}
 	return true;
