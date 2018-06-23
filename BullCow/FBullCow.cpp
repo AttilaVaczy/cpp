@@ -1,4 +1,6 @@
 #include "FBullCow.h"
+#include <map>
+#define TMap std::map
 
 using int32 = int;
 
@@ -21,11 +23,9 @@ void FBullCow::Reset()
 	return;
 }
 
-//testCommitMail
-
 EGuessStatus FBullCow::CheckGuessValidity(FString Guess) const
 {
-	if (false)
+	if (!IsIsogram(Guess))
 	{
 		return EGuessStatus::Not_Isogram;
 	}
@@ -70,4 +70,22 @@ FBullCowCount FBullCow::SubmitValidGuess(FString Guess)
 		bGameIsWon = false;
 	}
 	return BullCowCount;
+}
+
+bool FBullCow::IsIsogram(FString Word) const
+{
+	if (Word.length() <= 1) { return true; }
+	
+	TMap<char, bool> LetterSeen;
+	for (auto Letter : Word)
+	{
+		Letter = tolower(Letter);
+		if (LetterSeen[Letter]) {
+			return false;
+		}
+		else {
+			LetterSeen[Letter] = true;
+		}
+	}
+	return true;
 }
