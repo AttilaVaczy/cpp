@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+// To make syntax Unreal friendly
 using FString = std::string;
 using int32 = int;
 
@@ -21,22 +22,19 @@ enum EGuessStatus
 
 class FBullCow {
 
-
 public:
-	FBullCow(); //constructor
+	FBullCow(); // Constructor
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidity(FString) const;
 
-	void Reset(); //TODO Make a more rich return value
+	void Reset();
 	FBullCowCount SubmitValidGuess(FString);
-
 
 private:
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 

@@ -1,19 +1,22 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include "FBullCow.h"
 
+// To make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
 
+// Function prototypes as outside a class
 void PrintIntro();
 FText GetValidGuess();
 void PlayGame();
 bool AskToPlayAgain();
 void PrintGameSummary();
 
-FBullCow BCGame; //Instantiate of a new game
+FBullCow BCGame; // Instantiate of a new game which we re-use across plays
 
-//the entry point for the application
+// The entry point for the application
 int main()
 {
 	bool bPlayAgain = false;
@@ -23,9 +26,10 @@ int main()
 		bPlayAgain = AskToPlayAgain();
 	}
 	while (bPlayAgain);
-	return 0;
+	return 0; // The exit point of the application
 }
 
+// Plays a single game to completion
 void PlayGame()
 {
 	BCGame.Reset();
@@ -55,7 +59,7 @@ FText GetValidGuess()
 	FText Guess = "";
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
 	do {
-		// get a guess from the player
+		// Get a guess from the player
 		int32 CurrentTry = BCGame.GetCurrentTry();
 		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries();
 		std::cout << ". Enter your guess : ";
@@ -91,7 +95,7 @@ void PrintIntro()
 	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
 	std::cout << " *  |-,--- |              |------|  * " << std::endl;
 	std::cout << "    ^      ^              ^      ^ " << std::endl;
-	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
+	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter Isogram?\n\n";
 	return;
 }
 
