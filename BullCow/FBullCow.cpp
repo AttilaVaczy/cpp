@@ -21,6 +21,8 @@ void FBullCow::Reset()
 	return;
 }
 
+//testCommitMail
+
 EGuessStatus FBullCow::CheckGuessValidity(FString Guess) const
 {
 	if (false)
